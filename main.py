@@ -4,14 +4,12 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-# Load variables from .env file (for local testing)
 load_dotenv()
 
-# --- CONFIGURATION ---
+
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
-# Configure Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-2.5-flash') 
 
@@ -59,8 +57,8 @@ async def on_message(message):
                 print(f"Error: {e}")
                 await message.channel.send("I encountered an error processing that request.")
 
-# --- START THE WEB SERVER ---
+
 keep_alive()  
 
-# --- RUN THE BOT ---
+
 client.run(DISCORD_TOKEN)
